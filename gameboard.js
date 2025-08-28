@@ -16,6 +16,22 @@ class Gameboard{
 
         this.layout[x][y] = ship
     }
+
+    receiveAttack(coordinates){
+        let x = coordinates[0]
+        let y = coordinates[1]
+
+        // Check in the layout if a ship is on the coordinates
+        if (this.layout[x][y]!=[0]){
+            this.layout[x][y].hit()
+            console.log(`The ship on [${x},${y}] has been hit`)
+        }
+        else {
+            console.log(`No hit`)
+        }
+        // if yes trigger layout[x][y].hit()
+
+    }
 }
 
 module.exports = Gameboard;

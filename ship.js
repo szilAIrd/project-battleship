@@ -7,11 +7,15 @@ class Ship{
 
     hit(){
         this.hits++
+        if (this.isSunk()==true){
+            this.sunk = this.isSunk()
+        }
     }
 
     isSunk(){
         if(this.hits>=this.length){
             // If equal or more hits than length the ship is sunk
+            // this.sunk = true
             return true
         }
         else {
