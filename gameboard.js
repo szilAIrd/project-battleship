@@ -1,6 +1,7 @@
 class Gameboard{
     constructor(){
         this.layout = this.createGameboard(5,5)
+        this.missedHits = 0;
     }
 
     createGameboard(rows, cols) {
@@ -22,15 +23,68 @@ class Gameboard{
         let y = coordinates[1]
 
         // Check in the layout if a ship is on the coordinates
-        if (this.layout[x][y]!=[0]){
+        if (this.layout[x][y]!=[0] && this.layout[x][y]!=[1]){
             this.layout[x][y].hit()
             console.log(`The ship on [${x},${y}] has been hit`)
+            return true
         }
-        else {
-            console.log(`No hit`)
+        else if(this.layout[x][y]==[0]){
+            this.missedHits++
+            this.layout[x][y] = 1;
+            console.log(`Missed! No hit!`)
+            return false
         }
-        // if yes trigger layout[x][y].hit()
 
+        // if yes trigger layout[x][y].hit()
+    }
+
+    checkStatus(){
+        // Return TRUE on any floating ships, FALSE if all ships are sunk
+        let cntFloatingShips = 0;
+        // let i = 0;
+        // let j = 0;
+        for (let i=0; i<this.layout.length;i++){
+            for(let j=0;j<this.layout[i].length;j++){
+                console.log(`The current element is ${this.layout[i][j]}`)
+                if(this.layout[i][j] instanceof Object ){
+
+                    if(this.layout[i][j].isSunk = false){
+                        
+                    }
+                    else {
+                        cntFloatingShips++
+                    }
+                    
+                }
+            }
+        }
+        // while(i<this.layout.length){
+        //     while(j<this.layout[i].length){
+        //     if(this.layout[i][j] instanceof Object ){
+
+        //         if(this.layout[i][j].isSunk = false){
+                    
+        //         }
+        //         else {
+        //             cntFloatingShips++
+        //         }
+                
+        //     }
+        //     console.log(j)
+        //     j++
+        //     }
+        // console.log(i)
+        // i++
+        // console.log(this.layout[i][j])
+        // }
+
+        if(cntFloatingShips>0){
+            console.log('Not all ships are sunk yet!')
+            return true
+        }
+        else{
+            return false
+        }
     }
 }
 
