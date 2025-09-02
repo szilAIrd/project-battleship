@@ -5,8 +5,8 @@ class Gameboard{
     }
 
     createGameboard(rows, cols) {
-        let layout = new Array(rows).fill(null).map(() => new Array(cols).fill(0));
-        return layout;
+        let gameboard = new Array(rows).fill(null).map(() => new Array(cols).fill(0));
+        return gameboard;
       }
 
     placeShip(ship,coordinates){
@@ -58,26 +58,8 @@ class Gameboard{
                 }
             }
         }
-        // while(i<this.layout.length){
-        //     while(j<this.layout[i].length){
-        //     if(this.layout[i][j] instanceof Object ){
 
-        //         if(this.layout[i][j].isSunk = false){
-                    
-        //         }
-        //         else {
-        //             cntFloatingShips++
-        //         }
-                
-        //     }
-        //     console.log(j)
-        //     j++
-        //     }
-        // console.log(i)
-        // i++
-        // console.log(this.layout[i][j])
-        // }
-
+        //  Count ship objects that have sunk false
         if(cntFloatingShips>0){
             console.log('Not all ships are sunk yet!')
             return true
